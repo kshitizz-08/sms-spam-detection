@@ -1,0 +1,36 @@
+# Virtual Environment
+.venv/
+env/
+venv/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyd
+
+# Streamlit
+.streamlit/
+
+# Local databases & runtime logs
+*.db
+data/spam_history.db
+data/*.db
+*.pdf
+
+# Large dataset (can be built using build_1m_dataset.py)
+data/sms_spam_1million.csv
+data/dataset.csv
+
+# Keep base UCI datasets for live training
+!data/sms.tsv
+!data/spam.csv
+
+# Test helper scripts
+test_*.py
+
+# Editor & OS files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
