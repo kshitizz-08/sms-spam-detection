@@ -123,10 +123,10 @@ with st.sidebar:
 
     pages = [
         ("check",   "🔍 Check a Message"),
-        ("module1", "📊 Module 1 — Dataset"),
-        ("module2", "🧹 Module 2 — Cleaning"),
-        ("module3", "🧮 Module 3 — AI Features"),
-        ("module4", "🏆 Module 4 — Scoreboard"),
+        ("module1", "📊 Dataset & Stats"),
+        ("module2", "🧹 Text Cleaning"),
+        ("module3", "🧮 AI Features"),
+        ("module4", "🏆 Model Scoreboard"),
         ("history", "📜 History & Report"),
     ]
 
@@ -363,7 +363,7 @@ if page == "check":
 #  MODULE 1 — DATASET & STATS
 # ════════════════════════════════════════════════════════════════
 elif page == "module1":
-    st.title("📊 Module 1 — Dataset & Statistics")
+    st.title("📊 Dataset & Statistics")
     st.write("How much data was used to train the AI, and what does it look like?")
     st.divider()
 
@@ -404,7 +404,7 @@ elif page == "module1":
 #  MODULE 2 — TEXT CLEANING DEMO
 # ════════════════════════════════════════════════════════════════
 elif page == "module2":
-    st.title("🧹 Module 2 — Text Cleaning Pipeline")
+    st.title("🧹 Text Cleaning Pipeline")
     st.write("See exactly how raw SMS text is cleaned before the AI processes it.")
     st.divider()
 
@@ -451,7 +451,7 @@ elif page == "module2":
 #  MODULE 3 — HOW AI READS TEXT
 # ════════════════════════════════════════════════════════════════
 elif page == "module3":
-    st.title("🧮 Module 3 — How AI Reads Text")
+    st.title("🧮 How AI Reads Text")
     st.write("Computers don't understand words — they understand numbers. Here's how we convert text to numbers.")
     st.divider()
 
@@ -491,7 +491,7 @@ elif page == "module3":
 #  MODULE 4 — MODEL SCOREBOARD
 # ════════════════════════════════════════════════════════════════
 elif page == "module4":
-    st.title("🏆 Module 4 — Model Performance Scoreboard")
+    st.title("🏆 Model Performance Scoreboard")
     st.write("All 5 AI algorithms tested on the same dataset — see which performs best.")
     st.divider()
 
