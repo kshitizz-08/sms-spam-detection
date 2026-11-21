@@ -255,17 +255,35 @@ def clean_text(text: str) -> str:
     # 2. Lowercase English portions
     text = text.lower()
 
-    # 3. Normalize URLs
-    text = re.sub(r"https?://\S+|www\.\S+", " urltoken ", text)
+    # 3. Delivery / Parcel Phishing Detection & Semantic Normalization
+    delivery_terms = ('package', 'parcel', 'delivery', 'shipment', 'courier', 'dispatch')
+    delivery_hooks = (
+        'cannot be delivered', 'unable to deliver', 'failed delivery', 'on hold',
+        'incomplete address', 'missing address', 'customs fee', 'delivery fee',
+        'handling fee', 'pay', 'reschedule', 'pending delivery', 'track-parcel',
+        'action required', 'unpaid fee', 'redelivery', 'fee'
+    )
+    has_delivery = any(d in text for d in delivery_terms)
+    has_hook = any(h in text for h in delivery_hooks)
+    has_url = bool(re.search(r'https?://|www\.|\.com|\.link|\.xyz|\.top|\.org|\.me|\.info|\.site|\.co', text))
 
-    # 4. Normalize email addresses
+    is_delivery_phish = has_delivery and (has_hook or has_url)
+
+    # 4. Normalize URLs (preserving 'http' for TF-IDF feature vocabulary)
+    text = re.sub(r"https?://\S+|www\.\S+", " http urltoken ", text)
+
+    # 5. Normalize email addresses
     text = re.sub(r"\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b", " emailtoken ", text)
 
-    # 5. Normalize currency symbols ($ £ € ₹)
+    # 6. Normalize currency symbols ($ £ € ₹)
     text = re.sub(r"[\$£€₹]", " moneytoken ", text)
 
-    # 6. Normalize phone numbers / long codes
+    # 7. Normalize phone numbers / long codes
     text = re.sub(r"\b\d{5,12}\b", " numtoken ", text)
+
+    # 8. Append strong phishing tokens if delivery scam pattern matched
+    if is_delivery_phish:
+        text += " urgent claim verify fee prize link http code "
 
     # 7. Semantic concept translation for Hindi and Marathi Devanagari words
     if _DEVA_RE.search(text):
@@ -392,10 +410,13 @@ def highlight_message_html(text: str, spam_vocab_set: set) -> str:
                 result.append(f'<span style="{_STYLES["devanagari_spam"]}" title="Scam Keyword">🚨 {word}</span>')
             else:
                 result.append(word)
-        # 5. English spam vocab word
+        # 5. English spam triggers & vocab words
         else:
+            w_lower = word_bare.lower()
             cleaned = clean_text(word_bare)
-            if cleaned and any(part in spam_vocab_set for part in cleaned.split()):
+            if w_lower in {'pay', 'delivered', 'locked', 'claim', 'winner', 'urgent', 'verify', 'reward', 'prize', 'lottery'}:
+                result.append(f'<span style="{_STYLES["spam"]}" title="Scam Trigger">🚨 {word}</span>')
+            elif cleaned and any(part in spam_vocab_set for part in cleaned.split()):
                 result.append(f'<span style="{_STYLES["spam"]}" title="Spam Keyword">🚨 {word}</span>')
             else:
                 result.append(word)
