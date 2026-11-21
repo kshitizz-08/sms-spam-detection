@@ -27,12 +27,14 @@ flowchart LR
 - Ingests and inspects the 1,000,000-message dataset (569,580 Ham vs. 430,420 Spam) and the 5,572-message UCI benchmark dataset.
 - Analyzes message character lengths and word count distributions between Spam and Ham.
 
-### Module 2: Advanced NLP Text Preprocessing Pipeline
+### Module 2: Advanced Multilingual NLP Text Preprocessing Pipeline
 - **File**: `preprocessing.py`
 - Implements offline text normalization without web dependencies:
-  - Lowercasing and whitespace cleanup.
+  - Multilingual script auto-detection: English, Hindi (Devanagari), Marathi (Devanagari), and Hinglish.
+  - Offline Indic semantic concept normalization (Devanagari numerals `०-९` $\rightarrow$ `0-9`, root scam concepts `कर्ज`, `बक्षीस`, `ओटीपी`, `पैसे`, `तातडीने`).
   - Regex entity normalization: Web URLs (`urltoken`), phone/numeric codes (`numtoken`), currency symbols `$ £ € ₹` (`moneytoken`).
-  - Punctuation removal and built-in English stopword filtering.
+  - Punctuation removal and built-in stopword filtering.
+  - Sentence-level explainable highlighting for suspicious URLs, phone numbers, and scam trigger keywords.
   - Interactive step-by-step transformation visualizer in the UI.
 
 ### Module 3: Feature Extraction & Vectorization
