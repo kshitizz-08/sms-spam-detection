@@ -284,8 +284,8 @@ if page == "check":
                     unsafe_allow_html=True
                 )
 
-                # ── All 5 Model Breakdown (For Viva) ───────
-                with st.expander("📊 See all 5 model results (for Viva)"):
+                # ── All 5 Model Breakdown ───────────────────
+                with st.expander("📊 See all 5 model results"):
                     rows = {
                         "Model":   ["Naive Bayes", "Logistic Regression", "Support Vector Machine", "Random Forest", "Bi-LSTM"],
                         "Verdict": [result["Naive Bayes prediction"],
