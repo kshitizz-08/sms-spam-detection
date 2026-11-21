@@ -474,15 +474,15 @@ flowchart TD
 
 ---
 
-### **Step 6: Module 1 — Dataset Statistics & EDA**
+### **Step 6: Dataset Statistics & EDA**
 - **Description:** Visualizes the 1,000,000-message training distribution across Safe (569,580 messages, 57.0%) vs Spam (430,420 messages, 43.0%). Displays character-length distribution histograms demonstrating that spam messages are significantly longer than safe chats.
-- **Figure 6 Placeholder:** `[Insert Screenshot: Module 1 page showing 4 metric boxes and Safe vs Spam pie chart]`
+- **Figure 6 Placeholder:** `[Insert Screenshot: Dataset & Stats page showing 4 metric boxes and Safe vs Spam pie chart]`
 
 ---
 
-### **Step 7: Module 4 — Model Performance Scoreboard & Confusion Matrix**
+### **Step 7: Model Performance Scoreboard & Confusion Matrix**
 - **Description:** Official side-by-side benchmark table highlighting SVM as the top performer (99.99% accuracy) alongside confusion matrix heatmaps showing only 40 false alarms out of 113,916 safe test messages.
-- **Figure 7 Placeholder:** `[Insert Screenshot: Module 4 scoreboard table with green highlight cells and confusion matrix heatmap]`
+- **Figure 7 Placeholder:** `[Insert Screenshot: Model Scoreboard table with green highlight cells and confusion matrix heatmap]`
 
 ---
 
